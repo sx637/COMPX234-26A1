@@ -19,6 +19,12 @@ class Assignment1:
         self.print_list = printList()  # Create an empty list of print requests
         self.mThreads = []             # list for machine threads
         self.pThreads = []             # list for printer threads
+     
+     #Task2:add semaphores for synchronization
+     self.empty_slots =threading.Semaphore(self.NUM_PRINTERS)
+     #semaphores ti track availablrs slots
+     self.mutex =threading.Semaphore(1)
+     #mutex to make sure mutual exclusion when access the queue
 
     def startSimulation(self):
         # Create Machine and Printer threads
@@ -37,6 +43,7 @@ class Assignment1:
     for t in self.mThreads + self.pThreads：
     t.start()
         # Let the simulation run for some time
+        print(f"Simulation will run for {self.SIMULATION_TIME}seconds.")
         time.sleep(self.SIMULATION_TIME)
 
         # Finish simulation
