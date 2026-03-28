@@ -56,7 +56,7 @@ class Assignment1:
         printer.join()
 
         print("Simulation finished.")
-
+     #The program will exit after main thread and printer threads finish 
 
     # Printer class
     class printerThread(threading.Thread):
