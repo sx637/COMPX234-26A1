@@ -82,6 +82,15 @@ class Assignment1:
             # Print from the queue
             self.outer.print_list.queuePrint(printerID)
 
+            #Task2:acquire mutex before accessing the shared queue
+        self.outer.mutex.acquire()
+        try:
+            #print from the queue(this also removes the head)
+            self.outer.print_list.queuePrint(printerID)
+            finally:
+                #always release the mutex
+                self.outer.mutex.release()
+
     # Machine class
     class machineThread(threading.Thread):
         def __init__(self, machineID, outer):
