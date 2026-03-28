@@ -47,6 +47,7 @@ class Assignment1:
         time.sleep(self.SIMULATION_TIME)
 
         # Finish simulation
+        print("\nStopping simulation...")
         self.sim_active = False
 
         # Wait until all printer threads finish by joining them
