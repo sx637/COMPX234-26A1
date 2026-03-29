@@ -109,16 +109,26 @@ class Assignment1:
                 # Write code here
                 #Task2 :use semaphores to control access
                 #check if it is safe
-                self.isRequestSafe(self.machineID)
+                #self.isRequestSafe(self.machineID)
                 #send the print request
-                self.printRequest(self.machineID)
-                self.postRequest(self.machineID)
-               #self.printRequest(self.machineID)
+                #self.printRequest(self.machineID)
+                #self.postRequest(self.machineID)
+               #task1
+               self.printRequest(self.machineID)
         def machineSleep(self):
             sleepSeconds = random.randint(1, self.outer.MAX_MACHINE_SLEEP)
             time.sleep(sleepSeconds)
 
-        def printRequest(self, id):
+      #Task:method to  acquire semaphores before inserting
+      #print(f"Machine {id} will proceed") #debug printing
+      #wait for  an empty slot in the queue. if queue is full, this will block
+      self.outer.empty_slots.acquire()
+      #acquire mutex for exclusive access to the queue
+      self.outer.mutex.acquire()
+      #print(f"Machine{id} will proceed")#debug printing
+
+
+            def printRequest(self, id):
             print(f"Machine {id} Sent a print request")
             # Build a print document
             doc = printDoc(f"My name is machine {id}", id)
