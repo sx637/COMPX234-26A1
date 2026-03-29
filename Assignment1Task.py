@@ -90,6 +90,9 @@ class Assignment1:
             finally:
                 #always release the mutex
                 self.outer.mutex.release()
+        #Task 2:after printing, one slot in the queue become free.
+        #realease the empty_slots semaphore to allow a waiting machine to proceed
+        self.outer.mutex.release()
 
     # Machine class
     class machineThread(threading.Thread):
