@@ -120,12 +120,12 @@ class Assignment1:
             time.sleep(sleepSeconds)
 
       #Task:method to  acquire semaphores before inserting
-      #print(f"Machine {id} will proceed") #debug printing
+      print(f"Machine {id} will proceed") #debug printing
       #wait for  an empty slot in the queue. if queue is full, this will block
       self.outer.empty_slots.acquire()
       #acquire mutex for exclusive access to the queue
       self.outer.mutex.acquire()
-      #print(f"Machine{id} will proceed")#debug printing
+      print(f"Machine{id} will proceed")#debug printing
 
 
             def printRequest(self, id):
