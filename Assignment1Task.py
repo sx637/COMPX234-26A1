@@ -109,7 +109,7 @@ class Assignment1:
                 # Write code here
                 #Task2 :use semaphores to control access
                 #check if it is safe
-                #self.isRequestSafe(self.machineID)
+                #self.isRequestSafe(self.machineID）
                 #send the print request
                 #self.printRequest(self.machineID)
                 #self.postRequest(self.machineID)
