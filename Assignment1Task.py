@@ -138,5 +138,5 @@ class Assignment1:
 
 #Task2:method to release semaphores after inserting
 def postRequest(self,id)
-#print(f"Machine {id} Releasing mutex")#debug printing
+print(f"Machine {id} Releasing mutex")#debug printing
 self.outer.mutex.release()
