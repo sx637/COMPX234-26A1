@@ -120,6 +120,7 @@ class Assignment1:
             time.sleep(sleepSeconds)
 
       #Task:method to  acquire semaphores before inserting
+      def isRequestSafe(self,id)
       print(f"Machine {id} will proceed") #debug printing
       #wait for  an empty slot in the queue. if queue is full, this will block
       self.outer.empty_slots.acquire()
@@ -134,3 +135,8 @@ class Assignment1:
             doc = printDoc(f"My name is machine {id}", id)
             # Insert it in the print queue
             self.outer.print_list.queueInsert(doc)
+
+#Task2:method to release semaphores after inserting
+def postRequest(self,id)
+#print(f"Machine {id} Releasing mutex")#debug printing
+self.outer.mutex.release()
