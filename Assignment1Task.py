@@ -2,6 +2,7 @@ import threading
 import time
 import random
 
+# Import custom print document and print list classes
 from printDoc import printDoc
 from printList import printList
 
@@ -15,17 +16,15 @@ class Assignment1:
 
     # Initialise simulation variables
     def __init__(self):
-     self.sim_active = True
-     self.print_list = printList()  # Create an empty list of print requests
-     self.mThreads = []             # list for machine threads
-     self.pThreads = []             # list for printer threads
-     
-     #Task2:add semaphores for synchronization
-     self.empty_slots =threading.Semaphore(self.NUM_PRINTERS)
-     #semaphores ti track availablrs slots
-     self.mutex =threading.Semaphore(1)
-     #mutex to make sure mutual exclusion when access the queue
-
+        self.sim_active = True
+        self.print_list = printList()  # Create an empty list of print requests
+        self.mThreads = []             # list for machine threads
+        self.pThreads = []             # list for printer threads
+             # Task2:add semaphores for synchronization
+        self.empty_slots = threading.Semaphore(self.NUM_PRINTERS)
+        # semaphores to track available slots
+        self.mutex = threading.Semaphore(1)
+        # mutex to make sure mutual exclusion when access the queue
     def startSimulation(self):
         # Create Machine and Printer threads
         # Write code here
