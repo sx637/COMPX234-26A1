@@ -28,35 +28,37 @@ class Assignment1:
     def startSimulation(self):
         # Create Machine and Printer threads
         # Write code here
-            print("starting simulation and creating threads.")
-            for i in range(self.NUM_MACHINES):
-             machine = self.machineThread(i, self)
-             self.mThreads.append(machine)
-    
-            for i in range(self.NUM_PRINTERS):  
-             printer = self.printerThread(i, self)
-             self.pThreads.append(printer)
+        print("starting simulation and creating threads.")
+        for i in range(self.NUM_MACHINES):
+            machine = self.machineThread(i, self)
+            self.mThreads.append(machine)
+
+        for i in range(self.NUM_PRINTERS):
+            printer = self.printerThread(i, self)
+            self.pThreads.append(printer)
 
         # Start all the threads
         # Write code here
-    print("Starting all threads")
-    for t in self.mThreads + self.pThreads:
-      t.start()
+        print("Starting all threads")
+        for t in self.mThreads + self.pThreads:
+            t.start()
+
         # Let the simulation run for some time
-      print(f"Simulation will run for {self.SIMULATION_TIME}seconds.")
-      time.sleep(self.SIMULATION_TIME)
+        print(f"Simulation will run for {self.SIMULATION_TIME}seconds.")
+        time.sleep(self.SIMULATION_TIME)
 
         # Finish simulation
-      print("\nStopping simulation...")
-      self.sim_active = False
+        print("\nStopping simulation...")
+        self.sim_active = False
 
         # Wait until all printer threads finish by joining them
         # Write code here
-      for printer in self.pThreads:
-          printer.join()
+        for printer in self.pThreads:
+            printer.join()
 
-    print("Simulation finished.")
-     #The program will exit after main thread and printer threads finish 
+        print("Simulation finished.")
+        # The program will exit after main thread and printer threads finish
+     
 
     # Printer class
     class printerThread(threading.Thread):
