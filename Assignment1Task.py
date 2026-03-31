@@ -15,10 +15,10 @@ class Assignment1:
 
     # Initialise simulation variables
     def __init__(self):
-        self.sim_active = True
-        self.print_list = printList()  # Create an empty list of print requests
-        self.mThreads = []             # list for machine threads
-        self.pThreads = []             # list for printer threads
+     self.sim_active = True
+     self.print_list = printList()  # Create an empty list of print requests
+     self.mThreads = []             # list for machine threads
+     self.pThreads = []             # list for printer threads
      
      #Task2:add semaphores for synchronization
      self.empty_slots =threading.Semaphore(self.NUM_PRINTERS)
@@ -30,32 +30,33 @@ class Assignment1:
         # Create Machine and Printer threads
         # Write code here
             print("starting simulation and creating threads.")
-            for i in range (self.NUM_MACHINES):
-                machine=self.machineThread(i,self)
-                self.mThreads.append(machine)
-                for i in range  (self.NUM_PRINTERS):
-                    printer =self.printerThread(i,self)
-                    self.pThreads.append(printer)
+            for i in range(self.NUM_MACHINES):
+             machine = self.machineThread(i, self)
+             self.mThreads.append(machine)
+    
+            for i in range(self.NUM_PRINTERS):  
+             printer = self.printerThread(i, self)
+             self.pThreads.append(printer)
 
         # Start all the threads
         # Write code here
     print("Starting all threads")
-    for t in self.mThreads + self.pThreads：
-    t.start()
+    for t in self.mThreads + self.pThreads:
+      t.start()
         # Let the simulation run for some time
-        print(f"Simulation will run for {self.SIMULATION_TIME}seconds.")
-        time.sleep(self.SIMULATION_TIME)
+      print(f"Simulation will run for {self.SIMULATION_TIME}seconds.")
+      time.sleep(self.SIMULATION_TIME)
 
         # Finish simulation
-        print("\nStopping simulation...")
-        self.sim_active = False
+      print("\nStopping simulation...")
+      self.sim_active = False
 
         # Wait until all printer threads finish by joining them
         # Write code here
-        for printer in self.pThreads：
-        printer.join()
+      for printer in self.pThreads:
+          printer.join()
 
-        print("Simulation finished.")
+    print("Simulation finished.")
      #The program will exit after main thread and printer threads finish 
 
     # Printer class
@@ -78,21 +79,14 @@ class Assignment1:
             time.sleep(sleepSeconds)
 
         def printDox(self, printerID):
-            print(f"Printer ID: {printerID} : now available")
-            # Print from the queue
-            self.outer.print_list.queuePrint(printerID)
-
-            #Task2:acquire mutex before accessing the shared queue
-        self.outer.mutex.acquire()
+         print(f"Printer ID: {printerID} : now available")
+        # Task2: acquire mutex
+         self.outer.mutex.acquire()
         try:
-            #print from the queue(this also removes the head)
-            self.outer.print_list.queuePrint(printerID)
-            finally:
-                #always release the mutex
-                self.outer.mutex.release()
-        #Task 2:after printing, one slot in the queue become free.
-        #realease the empty_slots semaphore to allow a waiting machine to proceed
-        self.outer.mutex.release()
+            self.outer.print_list.queuePrint(printerID)  
+        finally:
+         self.outer.mutex.release()
+        self.outer.empty_slots.release()
 
     # Machine class
     class machineThread(threading.Thread):
@@ -120,7 +114,7 @@ class Assignment1:
             time.sleep(sleepSeconds)
 
       #Task:method to  acquire semaphores before inserting
-      def isRequestSafe(self,id)
+def isRequestSafe(self,id):
       #print(f"Machine {id} Checking availability") #debug printing
       #wait for  an empty slot in the queue. if queue is full, this will block
       self.outer.empty_slots.acquire()
@@ -129,14 +123,14 @@ class Assignment1:
      # print(f"Machine{id} will proceed")#debug printing
 
 
-            def printRequest(self, id):
-            print(f"Machine {id} Sent a print request")
+      def printRequest(self, id):
+             print(f"Machine {id} Sent a print request")
             # Build a print document
-            doc = printDoc(f"My name is machine {id}", id)
+             doc = printDoc(f"My name is machine {id}", id)
             # Insert it in the print queue
-            self.outer.print_list.queueInsert(doc)
+             self.outer.print_list.queueInsert(doc)
 
 #Task2:method to release semaphores after inserting
-def postRequest(self,id)
+def postRequest(self,id):
 #print(f"Machine {id} Releasing mutex")#debug printing
-self.outer.mutex.release()
+ self.outer.mutex.release()
