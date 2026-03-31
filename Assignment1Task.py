@@ -102,14 +102,15 @@ class Assignment1:
                 self.machineSleep()
                 # Machine wakes up and sends a print request
                 # Write code here
-                #Task2 :use semaphores to control access
-                #check if it is safe
+                # Task2 :use semaphores to control access
+                # check if it is safe
                 self.isRequestSafe(self.machineID)
-                #send the print request
+                # send the print request
                 self.printRequest(self.machineID)
                 self.postRequest(self.machineID)
-               #task1 uncommemt the line below and comment  the 4 lines above for task 1
-               #self.printRequest(self.machineID)
+                # task1 uncommemt the line below and comment the 4 lines above for task 1
+                # self.printRequest(self.machineID)
+
         def machineSleep(self):
             sleepSeconds = random.randint(1, self.outer.MAX_MACHINE_SLEEP)
             time.sleep(sleepSeconds)
