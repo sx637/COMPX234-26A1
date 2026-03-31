@@ -60,7 +60,7 @@ class Assignment1:
         # The program will exit after main thread and printer threads finish
      
 
-       # Printer class
+    # Printer class
     class printerThread(threading.Thread):
         def __init__(self, printerID, outer):
             threading.Thread.__init__(self)
@@ -115,24 +115,24 @@ class Assignment1:
             sleepSeconds = random.randint(1, self.outer.MAX_MACHINE_SLEEP)
             time.sleep(sleepSeconds)
 
-      #Task:method to  acquire semaphores before inserting
-def isRequestSafe(self,id):
-      #print(f"Machine {id} Checking availability") #debug printing
-      #wait for  an empty slot in the queue. if queue is full, this will block
-      self.outer.empty_slots.acquire()
-      #acquire mutex for exclusive access to the queue
-      self.outer.mutex.acquire()
-     # print(f"Machine{id} will proceed")#debug printing
+      
+        # Task:method to acquire semaphores before inserting
+        def isRequestSafe(self,id):
+            # print(f"Machine {id} Checking availability") #debug printing
+            # wait for an empty slot in the queue. if queue is full, this will block
+            self.outer.empty_slots.acquire()
+            # acquire mutex for exclusive access to the queue
+            self.outer.mutex.acquire()
+            # print(f"Machine{id} will proceed")#debug printing
 
-
-      def printRequest(self, id):
-             print(f"Machine {id} Sent a print request")
+        def printRequest(self, id):
+            print(f"Machine {id} Sent a print request")
             # Build a print document
-             doc = printDoc(f"My name is machine {id}", id)
+            doc = printDoc(f"My name is machine {id}", id)
             # Insert it in the print queue
-             self.outer.print_list.queueInsert(doc)
+            self.outer.print_list.queueInsert(doc)
 
-#Task2:method to release semaphores after inserting
-def postRequest(self,id):
-#print(f"Machine {id} Releasing mutex")#debug printing
- self.outer.mutex.release()
+        # Task2:method to release semaphores after inserting
+        def postRequest(self,id):
+            # print(f"Machine {id} Releasing mutex")#debug printing
+            self.outer.mutex.release()
