@@ -80,14 +80,14 @@ class Assignment1:
             time.sleep(sleepSeconds)
 
         def printDox(self, printerID):
-         print(f"Printer ID: {printerID} : now available")
-        # Task2: acquire mutex
-         self.outer.mutex.acquire()
-        try:
-            self.outer.print_list.queuePrint(printerID)  
-        finally:
-         self.outer.mutex.release()
-        self.outer.empty_slots.release()
+            print(f"Printer ID: {printerID} : now available")
+            # Task2: acquire mutex
+            self.outer.mutex.acquire()
+            try:
+                self.outer.print_list.queuePrint(printerID)
+            finally:
+                self.outer.mutex.release()
+            self.outer.empty_slots.release()
 
     # Machine class
     class machineThread(threading.Thread):
