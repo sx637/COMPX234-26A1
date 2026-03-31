@@ -20,11 +20,13 @@ class Assignment1:
         self.print_list = printList()  # Create an empty list of print requests
         self.mThreads = []             # list for machine threads
         self.pThreads = []             # list for printer threads
+
              # Task2:add semaphores for synchronization
         self.empty_slots = threading.Semaphore(self.NUM_PRINTERS)
         # semaphores to track available slots
         self.mutex = threading.Semaphore(1)
         # mutex to make sure mutual exclusion when access the queue
+
     def startSimulation(self):
         # Create Machine and Printer threads
         # Write code here
@@ -58,7 +60,6 @@ class Assignment1:
 
         print("Simulation finished.")
         # The program will exit after main thread and printer threads finish
-     
 
     # Printer class
     class printerThread(threading.Thread):
@@ -115,7 +116,6 @@ class Assignment1:
             sleepSeconds = random.randint(1, self.outer.MAX_MACHINE_SLEEP)
             time.sleep(sleepSeconds)
 
-      
         # Task:method to acquire semaphores before inserting
         def isRequestSafe(self,id):
             # print(f"Machine {id} Checking availability") #debug printing
@@ -136,3 +136,8 @@ class Assignment1:
         def postRequest(self,id):
             # print(f"Machine {id} Releasing mutex")#debug printing
             self.outer.mutex.release()
+
+
+
+
+            
