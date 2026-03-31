@@ -60,7 +60,7 @@ class Assignment1:
         # The program will exit after main thread and printer threads finish
      
 
-    # Printer class
+       # Printer class
     class printerThread(threading.Thread):
         def __init__(self, printerID, outer):
             threading.Thread.__init__(self)
